@@ -7172,6 +7172,7 @@ For the revision history of the second edition, see [that document's Revision Hi
 * Added {{IDBFactory/databases()}} method. ([Issue #31](https://github.com/w3c/IndexedDB/issues/31))
 * Added {{IDBTransaction/commit()}} method. ([Issue #234](https://github.com/w3c/IndexedDB/issues/234))
 
+<!-- ============================================================ -->
 # Acknowledgements # {#acknowledgements}
 <!-- ============================================================ -->
 
