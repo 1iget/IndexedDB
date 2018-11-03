@@ -1064,17 +1064,21 @@ The <dfn>lifetime</dfn> of a
     </aside>
 
 1. When each [=/request=] associated with a transaction is [=request/processed=],
-    a `success` or `error` [=event=] will be fired. While the event is being [=dispatched=],
-    the transaction [=transaction/state=] is set to [=transaction/active=], allowing additional
-    requests to be made against the transaction. Once the event dispatch is complete,
-    the transaction's [=transaction/state=] is set to [=transaction/inactive=] again.
+    a <a event>`success`</a> or <a event>`error`</a> [=event=] will be
+    fired. While the event is being [=dispatched=], the transaction
+    [=transaction/state=] is set to [=transaction/active=], allowing
+    additional requests to be made against the transaction. Once the
+    event dispatch is complete, the transaction's
+    [=transaction/state=] is set to [=transaction/inactive=] again.
 
 1. A transaction can be <dfn lt="abort|aborting|aborted">aborted</dfn>
-    at any time before it is [=transaction/finished=], even if the transaction
-    isn't currently [=transaction/active=] or hasn't yet [=transaction/started=].
+    at any time before it is [=transaction/finished=], even if the
+    transaction isn't currently [=transaction/active=] or hasn't yet
+    [=transaction/started=].
 
-    An explicit call to {{IDBTransaction/abort()}} will initiate an [=transaction/abort=].
-    An abort will also be initiated following a failed request that is not handled by script.
+    An explicit call to {{IDBTransaction/abort()}} will initiate an
+    [=transaction/abort=]. An abort will also be initiated following a
+    failed request that is not handled by script.
 
     When a transaction is aborted the implementation must undo (roll
     back) any changes that were made to the [=database=] during that
@@ -5184,13 +5188,14 @@ none.
       Attempts to commit the transaction. All pending [=/requests=] will be allowed
       to complete, but no new requests will be accepted. This can be used to force a
       transaction to quickly finish, without waiting for pending requests to fire
-      `success` events before attempting to commit normally.
+      <a event>`success`</a> events before attempting to commit normally.
 
       The transaction will abort if a pending request fails, for example due to a
-      constraint error. The `success` events for successful requests will still
-      fire, but throwing an exception in an event handler will not abort the
-      transaction. Similarly, `error` events for failed requests will still fire,
-      but calling `preventDefault()` will not prevent the transaction from aborting.
+      constraint error. The <a event>`success`</a> events for successful requests
+      will still fire, but throwing an exception in an event handler will not abort
+      the transaction. Similarly, <a event>`error`</a> events for failed requests
+      will still fire, but calling `preventDefault()` will not prevent the
+      transaction from aborting.
     </dd>
   </dl>
 </div>
