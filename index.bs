@@ -5564,7 +5564,7 @@ takes two arguments: the |transaction| to abort, and |error|.
 
 1. For each |request| in |transaction|'s [=request list=],
     abort the steps to [=asynchronously execute a request=] for |request|,
-    set the [=request/processed flag=] on |request| if not already set,
+    set |request|'s [=request/processed flag=] if not already set,
     and [=queue a task=] to run these steps:
 
     1. Set |request|'s [=request/done flag=].
@@ -5644,7 +5644,7 @@ created [=/request=] belongs to is [=transaction/aborted=] using the steps to
           other changes made by the transaction.
         </aside>
 
-    1. Set the [=request/processed flag=] on |request|.
+    1. Set |request|'s [=request/processed flag=].
 
     1. [=Queue a task=] to run these steps:
 
