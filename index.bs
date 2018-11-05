@@ -1043,18 +1043,24 @@ described below.
 The <dfn>lifetime</dfn> of a
 [=/transaction=] is as follows:
 
-1. A transaction is <dfn>created</dfn> with a [=transaction/scope=] and a [=transaction/mode=].
-    When a transaction is created its [=transaction/state=] is initially [=transaction/active=].
+1. A transaction is <dfn>created</dfn> with a [=transaction/scope=] and a
+    [=transaction/mode=]. When a transaction is created its
+    [=transaction/state=] is initially [=transaction/active=].
 
-1. When an implementation is able to enforce the constraints defined for the transaction [=transaction/scope=] and [=transaction/mode=], defined [below](#transaction-scheduling),
-    the implementation must [=queue a task=] to <dfn lt="start|started">start</dfn> the transaction asynchronously.
+1. When an implementation is able to enforce the constraints for the
+    transaction's [=transaction/scope=] and [=transaction/mode=],
+    defined [below](#transaction-scheduling), the implementation must
+    [=queue a task=] to <dfn lt="start|started">start</dfn> the
+    transaction asynchronously.
 
     Once the transaction has been [=transaction/started=] the
     implementation can begin executing the [=/requests=] placed
-    against the transaction.
-    Requests must be executed in the order in which they were made against the transaction.
-    Likewise, their results must be returned in the order the requests were placed against a specific transaction.
-    There is no guarantee about the order that results from requests in different transactions are returned.
+    against the transaction. Requests must be executed in the order in
+    which they were made against the transaction. Likewise, their
+    results must be returned in the order the requests were placed
+    against a specific transaction. There is no guarantee about the
+    order that results from requests in different transactions are
+    returned.
 
     <aside class=note>
         Transaction [=transaction/modes=] ensure that two
@@ -1086,12 +1092,15 @@ The <dfn>lifetime</dfn> of a
     [=/object stores=] as well as additions and removals of [=/object
     stores=] and [=/indexes=].
 
-1. The implementation must attempt to <dfn lt="commit|committed">commit</dfn> a transaction when
-    all [=/requests=] placed against the transaction have completed and their returned results handled,
-    no new requests have been placed against the transaction,
-    and the transaction has not been [=transaction/aborted=]
+1. The implementation must attempt to <dfn lt="commit|committed">commit</dfn>
+    a transaction when all [=/requests=] placed against the
+    transaction have completed and their returned results handled, no
+    new requests have been placed against the transaction, and the
+    transaction has not been [=transaction/aborted=]
 
-    An explicit call to {{IDBTransaction/commit()}} will initiate a [=transaction/commit=] without waiting for request results to be handled by script.
+    An explicit call to {{IDBTransaction/commit()}} will initiate a
+    [=transaction/commit=] without waiting for request results to be
+    handled by script.
 
     When committing, the transaction [=transaction/state=] is set to
     [=transaction/committing=]. The implementation must atomically
@@ -3038,7 +3047,7 @@ when invoked, must run these steps:
     [=throw=] an "{{InvalidStateError}}" {{DOMException}}.
 
 1. If |transaction|'s [=transaction/state=] is not [=transaction/active=],
-    [=throw=] a "{{TransactionInactiveError}}" {{DOMException}}.
+    then [=throw=] a "{{TransactionInactiveError}}" {{DOMException}}.
 
 1. If |transaction| is a [=read-only transaction=],
     [=throw=] a "{{ReadOnlyError}}" {{DOMException}}.
@@ -5902,8 +5911,8 @@ the implementation must run these steps:
     1. If |legacyOutputDidListenersThrowFlag| is set,
         then run the steps to [=abort a transaction=] with
         |transaction| and a newly <a for=exception>created</a>
-        "{{AbortError}}" {{DOMException}} and terminate these steps. This is done even if the
-        event's [=canceled flag=] is not set.
+        "{{AbortError}}" {{DOMException}} and terminate these steps.
+        This is done even if the event's [=canceled flag=] is not set.
 
         <aside class=note>
           This means that if an error event is fired and any of the event
@@ -5914,8 +5923,9 @@ the implementation must run these steps:
         </aside>
 
     1. If the event's [=canceled flag=] is not set,
-        then run the steps to [=abort a transaction=] using |transaction| and [=/request=]'s [=request/error=],
-        and terminate these steps.
+        then run the steps to [=abort a transaction=] using
+        |transaction| and [=/request=]'s [=request/error=], and
+        terminate these steps.
 
     1. If |transaction|'s [=transaction/request list=] is empty,
         then run the steps to [=commit a transaction=] with |transaction|.
